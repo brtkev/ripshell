@@ -41,4 +41,4 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) $(LIBS) -o $@
 
 dev : clean $(TARGET)
-	./$(TARGET)
+	./$(TARGET) $(args)

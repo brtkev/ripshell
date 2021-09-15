@@ -1,17 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "src/thread.h"
 
+#include "src/headers.h"
 
-int main(){
+//command arg arg2 arg3 arg4
+int main(int argc, char **argv){
+    getCommandLine();
 
-    // logIntro();
-    // printf("\n %s", getPath());
-    // setPath("uwu");
-    // printf("\n %s", getPath());
-
-    start();
+    // start();
     return 0;
 }
 
