@@ -1,0 +1,5 @@
+imprime en pantalla el texto:
+
+say [msg] [msg] [msg] [msg].
+
+<msg> : cualquier texto deseado.

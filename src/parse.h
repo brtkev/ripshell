@@ -24,7 +24,7 @@ int _getArgument(char ** argument){
 }
 
 int getArguments(char ***args){
-    printf("\n%s $ ", PWD);
+    printf("\n%s $", PWD);
     *args = (char **)malloc(bufferSize * sizeof(char**));
     char **p = *args;
     int count = 0;
@@ -74,7 +74,7 @@ int parseCommand(int argc, char **argv){
     }else if(strcmp(command, "enviroment") == 0){
         enviroment();
     }else if(strcmp(command, "history") == 0){
-        history();
+        history(argv, argc);
     }
 
     addToHistory(argv);

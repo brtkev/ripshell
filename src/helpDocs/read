@@ -1,0 +1,5 @@
+Lee un archivo y escribe el contenidos en el archivo establecido por el parámetro -o.
+Si no se establece -o , se mostrará la información en la terminal. El parámetro -n indicará el
+límite de líneas que se leerán del archivo.
+
+read <archivo> [-o] <archivoSalida> [-n] <numero de lineas>

@@ -1,0 +1,5 @@
+muestra en pantalla ayuda sobre el comando selecionado.
+
+help <command>
+
+<command> : un comando de la lista del comando "list"

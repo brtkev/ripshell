@@ -1,0 +1,5 @@
+muestra el contenido de directorio seleccionado.
+
+show <dir>
+
+<div> : directorio, usar "." mostrara el directorio actual

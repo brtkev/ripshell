@@ -1,0 +1,6 @@
+cambia el directorio.
+
+cd <dir name>
+
+<dir name> : nombre de la carpeta o directorio al cual cambiar.
+se puede usar ".." en lugar de un nombre para recorrer hacia atras
