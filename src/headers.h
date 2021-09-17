@@ -15,6 +15,7 @@ int updatePWD(char ** pwdPointer);
 #include "commands/pause.h"
 #include "commands/read.h"
 #include "commands/list.h"
+#include "commands/history.h"
 
 #include "utils.h"
 #include "parse.h"
