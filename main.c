@@ -5,10 +5,10 @@ void start();
 
 int main(int argc, char **argv){
 
-    updatePWD(&PWD);
-    updatePWD(&ORIGINALPWD);
+    loadEnv();
     start();
-    free(PWD);
+    closeEnv();
+    
     return 0;
 }
 

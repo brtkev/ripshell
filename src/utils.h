@@ -21,6 +21,43 @@ int updatePWD(char ** pwdPointer){
     }
 }
 
+int _initOriginalPWD(){
+    char * aux, * auxp, *p;
+    updatePWD(&aux);
+    ORIGINALPWD = malloc(MAX_PATH * sizeof(char*));
+    auxp = aux;p = ORIGINALPWD;
+    while(*auxp != '\0'){
+        if(*auxp == '\\'){
+            *p = *auxp;
+            p++;
+        }
+        *p = *auxp;
+        p++;auxp++;
+    }
+    *p = '\0';
+    free(aux);
+}
+
+int restartHistoryFile(){
+    _ripshellHistDir = malloc(MAX_PATH * sizeof(char*));
+    strcpy(_ripshellHistDir, ORIGINALPWD);
+    strcat(_ripshellHistDir, "\\\\.ripshellhist");
+    FILE *fp = fopen(_ripshellHistDir, "w");
+    fclose(fp);
+}
+
+int loadEnv(){
+    updatePWD(&PWD);
+    _initOriginalPWD();
+    restartHistoryFile();
+}
+
+int closeEnv(){
+    free(PWD);
+    free(ORIGINALPWD);
+    free(_ripshellHistDir);
+}
+
 
 void printStringArray(char ** arr){
     int j = 0, i = 0;

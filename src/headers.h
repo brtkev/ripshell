@@ -2,6 +2,7 @@
 
 char * PWD;
 char * ORIGINALPWD;
+char * _ripshellHistDir;
 
 void freeCommandLineVariables(char ** args, int count);
 int getCommandLineCount(char * line, int lineSize);
@@ -16,6 +17,7 @@ int updatePWD(char ** pwdPointer);
 #include "commands/read.h"
 #include "commands/list.h"
 #include "commands/history.h"
+#include "commands/env.h"
 
 #include "utils.h"
 #include "parse.h"

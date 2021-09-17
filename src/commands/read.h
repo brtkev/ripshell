@@ -1,7 +1,10 @@
 
 
 int linesIsActive(int nlines, int i){
-    return ( i < nlines && 0 < nlines);
+    if (nlines != 0){
+        return ( i < nlines);
+    }
+    return 1;
 }
 
 int printFileToConsole(char * fileName, int lines){
@@ -14,6 +17,8 @@ int printFileToConsole(char * fileName, int lines){
             i++;
         }
         printf("\n");
+    }else{
+        fprintf(stderr, "Error : no se encontro/pudo leer el archivo .\n");
     }
     fclose(fp);
 
@@ -28,6 +33,10 @@ int writeToFile(char * fileName, char * newFileName, int lines ){
             fprintf(nfp, buff);
             i++;
         }
+    }else if(fp == NULL){
+        fprintf(stderr, "Error : no se encontro/pudo leer el archivo .\n");
+    }else if(nfp == NULL){
+        fprintf(stderr, "Error : no se pudo crear el archivo .\n");
     }
     fclose(nfp);
     fclose(fp);

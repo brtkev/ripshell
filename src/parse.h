@@ -58,7 +58,6 @@ void freeArgumentsArray(int count, char *** arguments){
 
 int parseCommand(int argc, char **argv){
     char * command = argv[0];
-    // printf("%s", command);
     if(strcmp(command, "exit") == 0) return 0;
     else if(strcmp(command, "cd") == 0){
         cd(argv[1]);
@@ -72,8 +71,13 @@ int parseCommand(int argc, char **argv){
         ripshellRead(argv, argc);
     }else if(strcmp(command, "list") == 0){
         list();
+    }else if(strcmp(command, "enviroment") == 0){
+        enviroment();
+    }else if(strcmp(command, "history") == 0){
+        history();
     }
 
+    addToHistory(argv);
     return 1;
 }
 
