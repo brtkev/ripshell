@@ -1,6 +1,7 @@
 #include "stdheaders.h"
 
 char * PWD;
+char * ORIGINALPWD;
 
 void freeCommandLineVariables(char ** args, int count);
 int getCommandLineCount(char * line, int lineSize);

@@ -1,15 +1,12 @@
 
 #include "src/headers.h"
 
-//command arg arg2 arg3 arg4
-
 void start();
-
-
 
 int main(int argc, char **argv){
 
     updatePWD(&PWD);
+    updatePWD(&ORIGINALPWD);
     start();
     free(PWD);
     return 0;
