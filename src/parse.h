@@ -68,6 +68,8 @@ int parseCommand(int argc, char **argv){
         show(argv[1]);
     }else if(strcmp(command, "pause") == 0){
         pause();
+    }else if(strcmp(command, "read") == 0){
+        ripshellRead(argv, argc);
     }
 
     return 1;

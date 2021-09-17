@@ -8,12 +8,12 @@ void test(){
     }
 }
 
-int getInitialCwd(char ** cwdPointer){
+int updatePWD(char ** pwdPointer){
     char cwd[MAX_PATH];
     // char * cwd = (char*)malloc(MAX_PATH);
     if(getcwd(cwd, sizeof(cwd)) != NULL){
-        *cwdPointer = malloc(sizeof(cwd));
-        strcpy(*cwdPointer, cwd);
+        *pwdPointer = malloc(sizeof(cwd));
+        strcpy(*pwdPointer, cwd);
         return 1;
     }else{
         perror("getcwd() error");

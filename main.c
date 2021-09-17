@@ -9,7 +9,7 @@ void start();
 
 int main(int argc, char **argv){
 
-    getInitialCwd(&PWD);
+    updatePWD(&PWD);
     start();
     free(PWD);
     return 0;
