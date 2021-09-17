@@ -1,10 +1,18 @@
 #include "stdheaders.h"
 
+char * PWD;
+
 void freeCommandLineVariables(char ** args, int count);
 int getCommandLineCount(char * line, int lineSize);
 char** getCommandLineVariables(char * line, int lineSize, int argCount);
 int parseCommandLine(int argc, char **argv);
 
+#include "commands/cd.h"
+#include "commands/say.h"
+#include "commands/show.h"
+#include "commands/pause.h"
+
 #include "utils.h"
 #include "parse.h"
-#include "commands.h"
+
+

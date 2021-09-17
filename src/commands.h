@@ -1,6 +1,0 @@
-
-bool executeNewCommandLine(){
-    
-    return false;
-    
-}

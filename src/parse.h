@@ -24,6 +24,7 @@ int _getArgument(char ** argument){
 }
 
 int getArguments(char ***args){
+    printf("\n%s $ ", PWD);
     *args = (char **)malloc(bufferSize * sizeof(char**));
     char **p = *args;
     int count = 0;
@@ -46,7 +47,6 @@ int getArguments(char ***args){
 void freeArgumentsArray(int count, char *** arguments){
     int i = 0;
     char ** p = *arguments;
-    printf("init\n");
     while(i < count){
         free(p);
         p = NULL;
@@ -54,79 +54,26 @@ void freeArgumentsArray(int count, char *** arguments){
     }
     free(*arguments);
     *arguments = NULL;
-}
+}    
 
-
-void getCommandLine(){
-    printf("\n%s $ ", path);
-    
-    size_t lineSize;
-    size_t bufferSize = 32;
-    char * line = (char *)malloc(bufferSize * sizeof(char*));
-    
-    lineSize = getline(&line, &bufferSize, stdin);
-    printf("??\n");
-    int argCount = getCommandLineCount(line, lineSize);
-    char **args = getCommandLineVariables(line, lineSize, argCount);
-
-    printf("\n");
-    for (size_t j = 0; j < argCount; j++)
-    {
-        char * p = args[j];
-        for (size_t i = 0; i < 10; i++)
-        {
-            printf("%c --- ", *p);
-            if(*p == '\0') break;
-            p++;
-        }
+int parseCommand(int argc, char **argv){
+    char * command = argv[0];
+    // printf("%s", command);
+    if(strcmp(command, "exit") == 0) return 0;
+    else if(strcmp(command, "cd") == 0){
+        cd(argv[1]);
+    }else if(strcmp(command, "say") == 0){
+        say(argv, argc);
+    }else if(strcmp(command, "show") == 0){
+        show(argv[1]);
+    }else if(strcmp(command, "pause") == 0){
+        pause();
     }
-    // parseCommandLine(argCount, args);
-    free(line);
-    freeCommandLineVariables(args, argCount);
+
+    return 1;
 }
 
-void freeCommandLineVariables(char ** args, int count){
-
-    for(int i = 0; i < count; i++){
-        free(&args[i]);
-        args[i] = NULL;
-    }
-    free(*args);
-}
-
-int getCommandLineCount(char * line, int lineSize){
-    int count = 0;
-    for(int i = 0; i < lineSize; i++){
-        if(line[i] == '\n' || line[i] == '\0' || line[i] == ' '){
-            line[i] = '\0';
-            count++;
-        }
-    }return count;
-}
-
-int validateLinePosition(char * line, int i){
-    if(i == 0){
-        return 1;
-    }else if(line[i - 1] == '\0'){
-        return 1;
-    }else{
-        return 0;
-    }
-}
-
-char** getCommandLineVariables(char * line, int lineSize, int argCount){
-    char **args = malloc(argCount * sizeof(char**)); 
-    for(int i = 0, j = 0; i< lineSize; i++){
-        if(validateLinePosition(line, i) == 1){
-            args[j] = &line[i];
-            j++;
-        }
-    }
-    return args;
-}
-
-
-int parseCommandLine(int argc, char **argv)
+int parseArguments(int argc, char **argv)
 {
     int aflag = 0;
     int bflag = 0;
@@ -135,7 +82,6 @@ int parseCommandLine(int argc, char **argv)
     int c;
     optind = 1;
     while ((c = getopt(argc, argv, "abc:")) != -1)
-        // printf("%u ->", c);
         switch (c)
         {
         case 'a':
@@ -170,4 +116,8 @@ int parseCommandLine(int argc, char **argv)
     for (index = optind; index < argc; index++)
         printf("Non-option argument %s\n", argv[index]);
     return 0;
+}
+
+int _parser(int c){
+
 }

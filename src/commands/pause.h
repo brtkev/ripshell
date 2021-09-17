@@ -1,0 +1,4 @@
+
+int pause(){
+    getchar();
+}
