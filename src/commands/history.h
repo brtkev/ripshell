@@ -13,47 +13,53 @@ void addToHistory(char ** args){
 }
 
 void _history(int all){
-    FILE *fp = fopen(_ripshellHistDir, "r");
-    if(fp != NULL){
-        printf("??? %i\n", all);
-        char buff[255];
-        while(fgets(buff, 255, fp) != NULL){
-            printf("%s", buff);
-            if(all == 1) {
-                break;
+    if ( all == 0 ){
+        printf("last commnad");
+    }else{
+        FILE *fp = fopen(_ripshellHistDir, "r");
+        if(fp != NULL){
+            char buff[255];
+            while(fgets(buff, 255, fp) != NULL){
+                printf("%s", buff);
             }
+            printf("\n");
         }
-        printf("\n");
     }
 }
 
 int history(char ** args, int count){
-    int c, all = 0;
     optind = 1;
     opterr = 0;
-    while((c = getopt(count, args, ":--W;")) != -1){
-        switch (c)
-        {
-        case 'W':
-            printf(":(");
-            if(strcmp(optarg, "all")){
-                all = 1;
-            }else{
-                fprintf(stderr, "Error : opcion desconocida `--%s'.\n", optarg);
-            }
+    int c, digit_optind = 0, all = 0;
+    while (1) {
+        int this_option_optind = optind ? optind : 1;
+        int option_index = 0;
+        static struct option long_options[] = {
+            {"all",  no_argument,       0,  0 },
+            {0,         0,                 0,  0 }
+        };
+
+        c = getopt_long(count, args, "", long_options, &option_index);
+        if (c == -1)
             break;
 
-        case '?':
-            if (isprint(optopt))
-                fprintf(stderr, "Error : opcion desconocida `-%c'.\n", optopt);
-            else
-                fprintf(stderr,
-                        "Error : Caracter desconocido `\\x%x'.\n",
-                        optopt);
-            return 0;
-        
-        default:
-            abort();
+        switch (c) {
+            case 0:
+                if(option_index == 0){
+                    all = 1;
+                }
+                break;
+
+            case '?':
+                if((isprint(optopt))){
+                    printf("Error : '%c' no es un argumento valido", optopt);
+                }else{
+                    printf("Error : '%s' no es un argumento valido", args[optind- 1]);
+                }
+                break;
+
+            default:
+                printf("?? getopt returned character code 0%o ??\n", c);
         }
     }
     _history(all);

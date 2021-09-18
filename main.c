@@ -4,7 +4,6 @@
 void start();
 
 int main(int argc, char **argv){
-
     loadEnv();
     start();
     closeEnv();
@@ -20,7 +19,6 @@ void start(){
         char ** args;
         int count = getArguments(&args);
         loop = parseCommand(count, args);
-        // parseArguments(count, args);
         freeArgumentsArray(count, &args);
     }
 }

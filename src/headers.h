@@ -3,6 +3,7 @@
 char * PWD;
 char * ORIGINALPWD;
 char * _ripshellHistDir;
+char * LASTCOMMAND;
 
 void freeCommandLineVariables(char ** args, int count);
 int getCommandLineCount(char * line, int lineSize);

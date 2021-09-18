@@ -40,6 +40,7 @@ int _initOriginalPWD(){
 
 int restartHistoryFile(){
     _ripshellHistDir = malloc(MAX_PATH * sizeof(char*));
+    LASTCOMMAND = malloc(MAX_PATH * sizeof(char*));
     strcpy(_ripshellHistDir, ORIGINALPWD);
     strcat(_ripshellHistDir, "\\\\.ripshellhist");
     FILE *fp = fopen(_ripshellHistDir, "w");
@@ -56,6 +57,7 @@ int closeEnv(){
     free(PWD);
     free(ORIGINALPWD);
     free(_ripshellHistDir);
+    free(LASTCOMMAND);
 }
 
 
@@ -94,3 +96,4 @@ void printStringArrayByChar(char **arr){
         j++;
     }
 }
+
