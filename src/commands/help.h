@@ -1,22 +1,33 @@
 
-int help(char * command){
-    
-    if(strcmp(command, "exit") == 0) return 0;
-    else if(strcmp(command, "cd") == 0){
-        printf("x");
-    }else if(strcmp(command, "say") == 0){
-        printf("x");
-    }else if(strcmp(command, "show") == 0){
-        printf("x");
-    }else if(strcmp(command, "pause") == 0){
-        printf("x");
-    }else if(strcmp(command, "read") == 0){
-        printf("x");
-    }else if(strcmp(command, "list") == 0){
-        printf("x");
-    }else if(strcmp(command, "enviroment") == 0){
-        printf("x");
-    }else if(strcmp(command, "history") == 0){
-        printf("x");
+int helpRead(char * command){
+    char * helpDir = malloc(MAX_PATH * sizeof(char*));
+    strcpy( helpDir, ORIGINALPWD);
+    strcat( helpDir, "\\\\src\\\\helpDocs\\\\");
+
+    FILE * fp = fopen(strcat( helpDir, command ), "r");
+    if(fp != NULL){
+        char buff[255];
+        while(fgets(buff, 255, fp) != NULL){
+            printf("%s", buff);
+        }
     }
+}
+
+int help(char * command){
+    if(command != NULL){
+        helpRead(command);
+    }else{
+        printf("%s%s%s%s%s%s%s%s%s%s",
+        "cd                 [dir]\n",
+        "show               [dir/file]\n",
+        "say                [msg1] [msg2] [msg3] ...\n",
+        "enviroment         WIP\n",
+        "exit\n",
+        "pause\n",
+        "read               [-o] [-n]\n",
+        "list\n",
+        "help               [command]\n\n",
+        "para mas informacion help [command]\n");
+        }
+    return 0; 
 }

@@ -1,4 +1,4 @@
+history            [-o] [-n]\n
+
 Imprime el último comando ingresado. Mostrará todos los comandos de la sesión
 cuando se utiliza con el parámetro --all.
-
-history [--all]

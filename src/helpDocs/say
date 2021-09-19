@@ -1,5 +1,3 @@
-imprime en pantalla el texto:
+say                [msg1] [msg2] [msg3] ...
 
-say [msg] [msg] [msg] [msg].
-
-<msg> : cualquier texto deseado.
+imprime en pantalla el texto

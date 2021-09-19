@@ -75,6 +75,8 @@ int parseCommand(int argc, char **argv){
         enviroment();
     }else if(strcmp(command, "history") == 0){
         history(argv, argc);
+    }else if(strcmp(command, "help") == 0){
+        help(argv[1]);
     }
 
     addToHistory(argv);

@@ -9,9 +9,11 @@ Taller 1 Sistemas Operativos
 
 ## 
 
-- [ ] comandos
+- [x] comandos
 - [ ] hilo
-- [ ] parser
+- [x] parser
+- [x] history last command
+- [ ] help
 
 
 # List.h
