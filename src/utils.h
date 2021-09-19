@@ -90,3 +90,23 @@ void printStringArrayByChar(char **arr){
     }
 }
 
+
+int charArraySize(char **arr){
+    char **i = arr;
+    int count = 0;
+    for(; *i; i++ && count++);
+    return count;
+}
+
+char ** charArrayPopFront(char ** arr, int size){
+    if(size == 0) size = charArraySize(arr);
+    char ** newArr = malloc(size * sizeof(arr)), ** i, **j;
+    i = arr; j = newArr;
+    for(int count = 0; *i; i++ && count++){
+        if(count > 0){
+            *j = *i;
+            j++ ;
+        }
+    }
+    return newArr;
+}

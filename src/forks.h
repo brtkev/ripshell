@@ -6,7 +6,6 @@ int forking(char ** args, int count){
     if(pid == 0){
         char * execPath = getenv("EXECDIR");
         execv(execPath, args);
-        free(execPath);
     }
     
     

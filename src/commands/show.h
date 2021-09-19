@@ -1,4 +1,4 @@
-#include <dirent.h>
+
 
 int show(char * dir)
 {

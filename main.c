@@ -6,17 +6,16 @@ void start();
 
 
 int main(int argc, char **argv){
+    loadEnv();
+    char ** x = charArrayPopFront(argv, argc);
 
-
-    // fork();
-    // printf("hello world");
+    // parseCommand(argc-1, x);
     start();    
     return 0;
 }
 
 
 void start(){
-    loadEnv();
     int loop = 1;
     while(loop){
         char ** args;

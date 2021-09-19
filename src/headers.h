@@ -6,6 +6,8 @@ char** getCommandLineVariables(char * line, int lineSize, int argCount);
 int parseCommandLine(int argc, char **argv);
 char * updatePWD();
 
+#include "utils.h"
+
 #include "commands/cd.h"
 #include "commands/say.h"
 #include "commands/show.h"
@@ -15,9 +17,10 @@ char * updatePWD();
 #include "commands/history.h"
 #include "commands/env.h"
 #include "commands/help.h"
+#include "commands/execute.h"
 
-#include "utils.h"
-#include "envLoad.h"
+
+
 #include "parse.h"
 #include "forks.h"
 
