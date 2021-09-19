@@ -1,19 +1,22 @@
 
+#include <sys/types.h>
 #include "src/headers.h"
 
 void start();
 
+
 int main(int argc, char **argv){
-    loadEnv();
-    start();
-    closeEnv();
-    
+
+
+    fork();
+    printf("hello world");
+    // start();    
     return 0;
 }
 
 
 void start(){
-
+    loadEnv();
     int loop = 1;
     while(loop){
         char ** args;
@@ -21,4 +24,5 @@ void start(){
         loop = parseCommand(count, args);
         freeArgumentsArray(count, &args);
     }
+    closeEnv();
 }
