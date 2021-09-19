@@ -8,9 +8,9 @@ void start();
 int main(int argc, char **argv){
 
 
-    fork();
-    printf("hello world");
-    // start();    
+    // fork();
+    // printf("hello world");
+    start();    
     return 0;
 }
 
@@ -22,7 +22,7 @@ void start(){
         char ** args;
         int count = getArguments(&args);
         loop = parseCommand(count, args);
-        freeArgumentsArray(count, &args);
+        freeArgumentsArray(count, args);
     }
     closeEnv();
 }

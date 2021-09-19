@@ -1,6 +1,6 @@
 
 void test(){
-    char cwd[MAX_PATH];
+    char cwd[PATH_MAX];
     if(getcwd(cwd, sizeof(cwd)) != NULL){
         printf("%s\n", cwd);
     }else{
@@ -9,8 +9,7 @@ void test(){
 }
 
 int updatePWD(char ** pwdPointer){
-    char cwd[MAX_PATH];
-    // char * cwd = (char*)malloc(MAX_PATH);
+    char cwd[PATH_MAX];
     if(getcwd(cwd, sizeof(cwd)) != NULL){
         *pwdPointer = malloc(sizeof(cwd));
         strcpy(*pwdPointer, cwd);
@@ -24,10 +23,10 @@ int updatePWD(char ** pwdPointer){
 int _initOriginalPWD(){
     char * aux, * auxp, *p;
     updatePWD(&aux);
-    ORIGINALPWD = malloc(MAX_PATH * sizeof(char*));
+    ORIGINALPWD = malloc(PATH_MAX * sizeof(char*));
     auxp = aux;p = ORIGINALPWD;
     while(*auxp != '\0'){
-        if(*auxp == '\\'){
+        if(*auxp == '\\' || *auxp == '/'){
             *p = *auxp;
             p++;
         }
@@ -39,9 +38,9 @@ int _initOriginalPWD(){
 }
 
 int restartHistoryFile(){
-    _ripshellHistDir = malloc(MAX_PATH * sizeof(char*));
+    _ripshellHistDir = malloc(PATH_MAX * sizeof(char*));
     strcpy(_ripshellHistDir, ORIGINALPWD);
-    strcat(_ripshellHistDir, "\\\\.ripshellhist");
+    strcat(_ripshellHistDir, "//.ripshellhist");
     FILE *fp = fopen(_ripshellHistDir, "w");
     fclose(fp);
 }

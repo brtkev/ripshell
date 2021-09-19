@@ -1,6 +1,7 @@
 
 
 int cd(char * dir){
+
     if(dir == NULL){
         printf("Error : Falta directorio \"%s\".\n", dir);
         return 0;

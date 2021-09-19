@@ -30,7 +30,7 @@ int writeToFile(char * fileName, char * newFileName, int lines ){
         int i = 0;
         char buff[255];
         while(fgets(buff, 255, fp) != NULL && linesIsActive(lines, i)){
-            fprintf(nfp, buff);
+            fprintf(nfp, "%s",buff);
             i++;
         }
     }else if(fp == NULL){

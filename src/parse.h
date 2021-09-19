@@ -1,15 +1,14 @@
 #include "stdheaders.h"
 
-char *path = "~/user";
 size_t bufferSize = 32;
 
-int validateChar(char c){
+int validateChar(int c){
     return (c == '\0' || c == '\n' || c == ' ');
 }
 
 int _getArgument(char ** argument){
-    *argument = (char*)malloc(bufferSize * sizeof(char*));
-    char c, *p = *argument;
+    int c;
+    char *p = *argument;
     int i = 0;
     while(1){
         c = getc(stdin);
@@ -29,7 +28,7 @@ int getArguments(char ***args){
     char **p = *args;
     int count = 0;
     while(1){
-        char * arg;
+        char * arg = (char*)malloc(bufferSize * sizeof(char*));
         int endOfLine = _getArgument(&arg);
         *p = arg;
         p++;
@@ -44,16 +43,14 @@ int getArguments(char ***args){
 }
 
 
-void freeArgumentsArray(int count, char *** arguments){
-    int i = 0;
-    char ** p = *arguments;
-    while(i < count){
-        free(p);
-        p = NULL;
-        p++;i++;
+void freeArgumentsArray(int count, char ** arguments){
+    for(int i = 0; arguments[i] != NULL; i++){
+        free(arguments[i]);
+        arguments[i] = NULL;
     }
-    free(*arguments);
-    *arguments = NULL;
+    free(arguments);
+    arguments = NULL;
+    
 }    
 
 int parseCommand(int argc, char **argv){

@@ -1,3 +1,5 @@
-list
-help
-help cd
+cd .
+history
+help history
+history
+history --all
