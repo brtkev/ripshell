@@ -24,5 +24,4 @@ void start(){
         loop = parseCommand(count, args);
         freeArgumentsArray(count, args);
     }
-    closeEnv();
 }

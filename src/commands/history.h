@@ -1,6 +1,6 @@
 
 void addToHistory(char ** args){
-    FILE *fp = fopen(_ripshellHistDir, "a");
+    FILE *fp = fopen(getenv("HISTORYDIR"), "a");
     if(fp != NULL){
         for(int i = 0; args[i] != NULL; i++){
             if(i != 0) fprintf(fp, " ");
@@ -55,7 +55,7 @@ int history(char ** args, int count){
         all = parseHistory(args, count);
     }
     
-    FILE *fp = fopen(_ripshellHistDir, "r");
+    FILE *fp = fopen(getenv("HISTORYDIR"), "r");
     if(fp != NULL){
         char buff[255];
         if ( all == 0 ){

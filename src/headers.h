@@ -1,14 +1,10 @@
 #include "stdheaders.h"
 
-char * PWD;
-char * ORIGINALPWD;
-char * _ripshellHistDir;
-
 void freeCommandLineVariables(char ** args, int count);
 int getCommandLineCount(char * line, int lineSize);
 char** getCommandLineVariables(char * line, int lineSize, int argCount);
 int parseCommandLine(int argc, char **argv);
-int updatePWD(char ** pwdPointer);
+char * updatePWD();
 
 #include "commands/cd.h"
 #include "commands/say.h"
@@ -21,6 +17,8 @@ int updatePWD(char ** pwdPointer);
 #include "commands/help.h"
 
 #include "utils.h"
+#include "envLoad.h"
 #include "parse.h"
+#include "forks.h"
 
 

@@ -1,30 +1,21 @@
 
-void test(){
-    char cwd[PATH_MAX];
-    if(getcwd(cwd, sizeof(cwd)) != NULL){
-        printf("%s\n", cwd);
+
+char * updatePWD(){
+    char pwd[PATH_MAX];
+    if(getcwd(pwd, sizeof(pwd)) != NULL){
+        char *nPwd  = malloc(sizeof(pwd));
+        strcpy(nPwd, pwd);
+        setenv("PWD", nPwd, 1);
+        return nPwd;
     }else{
         perror("getcwd() error");
+        return NULL;
     }
 }
 
-int updatePWD(char ** pwdPointer){
-    char cwd[PATH_MAX];
-    if(getcwd(cwd, sizeof(cwd)) != NULL){
-        *pwdPointer = malloc(sizeof(cwd));
-        strcpy(*pwdPointer, cwd);
-        return 1;
-    }else{
-        perror("getcwd() error");
-        return 0;
-    }
-}
-
-int _initOriginalPWD(){
-    char * aux, * auxp, *p;
-    updatePWD(&aux);
-    ORIGINALPWD = malloc(PATH_MAX * sizeof(char*));
-    auxp = aux;p = ORIGINALPWD;
+int _initOriginalPWD(char *cwd){
+    char * auxp, *p, *ORIGINALPWD = malloc(PATH_MAX * sizeof(char*));
+    auxp = cwd;p = ORIGINALPWD;
     while(*auxp != '\0'){
         if(*auxp == '\\' || *auxp == '/'){
             *p = *auxp;
@@ -34,27 +25,32 @@ int _initOriginalPWD(){
         p++;auxp++;
     }
     *p = '\0';
-    free(aux);
+    setenv("ORIGINALPWD", ORIGINALPWD, 1);
+    free(ORIGINALPWD);
 }
 
 int restartHistoryFile(){
-    _ripshellHistDir = malloc(PATH_MAX * sizeof(char*));
-    strcpy(_ripshellHistDir, ORIGINALPWD);
-    strcat(_ripshellHistDir, "//.ripshellhist");
-    FILE *fp = fopen(_ripshellHistDir, "w");
+    
+    FILE *fp = fopen(getenv("HISTORYDIR"), "w");
     fclose(fp);
 }
 
 int loadEnv(){
-    updatePWD(&PWD);
-    _initOriginalPWD();
+    char *buffer = updatePWD();
+    _initOriginalPWD(buffer);
+    char * origin = malloc(PATH_MAX* sizeof(char*));
+    strcpy(origin, getenv("ORIGINALPWD"));
+    sprintf(buffer, "%s%s", origin, "//.history");
+    setenv("HISTORYDIR", buffer, 0);
+    sprintf(buffer, "%s%s", origin, "//src//helpDocs//");
+    setenv("HELPDIR", buffer, 0);
+    sprintf(buffer, "%s%s", origin, "//ripshell");
+    setenv("EXECDIR", buffer, 0);
+    
     restartHistoryFile();
-}
-
-int closeEnv(){
-    free(PWD);
-    free(ORIGINALPWD);
-    free(_ripshellHistDir);
+    free(origin);
+    free(buffer);
+    
 }
 
 

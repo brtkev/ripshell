@@ -3,7 +3,7 @@
 #make ${nombre de ejecutable}
 
 
-TARGET = RUN
+TARGET = ripshell
 #Bibliotecas incluidas, La biblioteca math.h es una muy comun
 LIBS = -lm
 #Compilador utilizado, por ej icc, pgcc, gcc, g++

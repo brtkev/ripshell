@@ -23,7 +23,7 @@ int _getArgument(char ** argument){
 }
 
 int getArguments(char ***args){
-    printf("\n%s $", PWD);
+    printf("\n%s $", getenv("PWD"));
     *args = (char **)malloc(bufferSize * sizeof(char**));
     char **p = *args;
     int count = 0;

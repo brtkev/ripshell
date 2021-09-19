@@ -1,9 +1,7 @@
 
 int helpRead(char * command){
-    char * helpDir = malloc(PATH_MAX * sizeof(char*));
-    strcpy( helpDir, ORIGINALPWD);
-    strcat( helpDir, "//src//helpDocs//");
-    FILE * fp = fopen( strcat( helpDir, command ), "r");
+    
+    FILE * fp = fopen( strcat( getenv("HELPDIR"), command ), "r");
     if(fp != NULL){
         char buff[255];
         while(fgets(buff, 255, fp) != NULL){
