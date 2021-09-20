@@ -3,7 +3,7 @@ int strCopyTEST(){
     char * str = "test string";
     char * newStr = strCopy(str);
     char *i = newStr;
-    for(; *i; i++ && str++){
+    for(; *i; i++ , str++){
         if(*i != *str){
             free(newStr);
             return 1;

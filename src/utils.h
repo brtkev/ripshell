@@ -56,8 +56,8 @@ int loadEnv(){
 
 void printStringArray(char ** arr){
     int j = 0, i = 0;
-    while( arr[j] != NULL)
-    {
+    while( arr[j])
+    {   
         char * p = arr[j];
         while(1)
         {
@@ -94,7 +94,7 @@ void printStringArrayByChar(char **arr){
 int charArraySize(char **arr){
     char **i = arr;
     int count = 0;
-    for(; *i; i++ && count++);
+    for(; *i; i++ , count++);
     return count;
 }
 
@@ -103,7 +103,7 @@ char *strCopy(char * string){
     char * new = malloc(PATH_MAX * sizeof(char*)), *i, *j;
     i = new, j= string;
     int count = 0;
-    for(;*j; i++ && j++ && count++){
+    for(;*j; i++ , j++ , count++){
         *i = *j;
     }
     return realloc(new , count * sizeof(char*));
@@ -115,7 +115,7 @@ char ** charArrayPopFront(char ** arr, int size){
     if(size == 0) size = charArraySize(arr);
     char ** newArr = malloc(size * sizeof(arr)), ** i, **j;
     i = arr; j = newArr;
-    for(int count = 0; *i; i++ && count++){
+    for(int count = 0; *i; i++ , count++){
         if(count > 0){
             *j = strCopy(*i);
             // *j = *i;
@@ -129,8 +129,15 @@ char ** arrayCopy(char ** arr){
     char ** newArr = malloc(PATH_MAX * sizeof(arr)), ** i, **j;
     i = arr; j = newArr;
     int count = 0;
-    for(; *i; i++ && j++ && count++){
+    for(; *i; i++ , j++ , count++){
         *j = strCopy(*i);
     }
     return realloc(newArr, count * sizeof(char**));
+}
+
+void freeArray(char ** arr){
+    for(int i = 0; arr[i]; i++){
+        free(arr[i]);
+    }
+    free(arr);
 }

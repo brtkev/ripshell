@@ -5,29 +5,29 @@ int _parseArgumentTEST(){
     Argument arg = _parseArgument((char *)"--exec");
     if(arg.size != 6)return 1;
     else if(arg.type != 2) return 2;
-    else if(strcmp(arg.string, (char*)"exec") != 0){
-        free(arg.string);
+    else if(strcmp(arg.name, (char*)"exec") != 0){
+        free(arg.name);
         return 3;
     } 
-    free(arg.string);
+    free(arg.name);
 
     arg = _parseArgument((char *)"-o");
     if(arg.size != 2)return 4;
     else if(arg.type != 1) return 5;
-    else if(strcmp(arg.string, (char*)"o") != 0){
-        free(arg.string);
+    else if(strcmp(arg.name, (char*)"o") != 0){
+        free(arg.name);
         return 6;
     } 
-    free(arg.string);
+    free(arg.name);
 
     arg = _parseArgument((char *)"read");
     if(arg.size != 4)return 7;
     else if(arg.type != 0) return 8;
-    else if(strcmp(arg.string, (char*)"read") != 0){
-        free(arg.string);
+    else if(strcmp(arg.name, (char*)"read") != 0){
+        free(arg.name);
         return 9;
     } 
-    free(arg.string);
+    free(arg.name);
 
     return 0;
 }

@@ -1,6 +1,7 @@
 
 #include "parse.test.h"
 #include "utils.test.h"
+#include "execute.test.h"
 
 void testResult(char * testName, int result){
     printf("%s :\n", testName);
@@ -21,5 +22,7 @@ int startTest(){
     testResult("strCopy()", strCopyTEST());
     testResult("charArrayPopFront()", charArrayPopFrontTEST());
     testResult("arrayCopy()", arrayCopyTEST());
+
+    testResult("execDivideStrByCommand()", execDivideStrByCommandTEST());
 
 }
