@@ -2,6 +2,15 @@
 
 size_t bufferSize = 32;
 
+struct argument
+{
+    int size, type;
+    char * string;
+};
+
+typedef struct argument Argument;
+
+
 int validateChar(int c){
     return (c == '\0' || c == '\n' || c == ' ');
 }
@@ -127,6 +136,38 @@ int parseArguments(int argc, char **argv)
     return 0;
 }
 
-int _parser(int c){
+Argument _parseArgument(char * arg){
+    Argument newArg;
+    newArg.size = 0;
+    newArg.string = malloc(PATH_MAX * sizeof(char *));
+    newArg.type = 0;
+    char * i = arg , * j = newArg.string;
+    for(; *i; i++ && newArg.size++){
+        if(*i == '-' && newArg.size < 2 && newArg.size == newArg.type){
+            newArg.type++;
+        }else{
+            *j = *i;
+            j++;
+        }
+    }
+    *j = *i;
+    newArg.string = realloc(newArg.string, newArg.size + 1 * sizeof(char*));
+    return newArg;
+}
 
+int _parser(int argc, char ** argvars){
+    char ** argv;
+    if(strcmp(argvars[0], (char*)"/.ripshell") == 0){
+        argv = charArrayPopFront(argv, argc);
+        argc--;
+    }else{
+        printf("here\n");
+        argv = arrayCopy(argvars);   
+    }
+
+    for(int i = 0; argv[i]; i++){
+
+        Argument arg = _parseArgument(argv[i]);
+
+    }
 }

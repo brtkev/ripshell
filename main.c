@@ -1,16 +1,27 @@
 
 #include <sys/types.h>
 #include "src/headers.h"
+#include "test/test.h"
 
 void start();
 
 
 int main(int argc, char **argv){
     loadEnv();
-    char ** x = charArrayPopFront(argv, argc);
+    startTest();
 
-    // parseCommand(argc-1, x);
-    start();    
+    // printStringArray(argv);
+    // return 0;
+    // if(argc > 1){
+
+    // }else{
+    //     start();
+    // }
+    // if(argc > 1){
+    //     if(strcmp(argv[1], (char*)"--exec"))
+    // }
+
+    // start();    
     return 0;
 }
 
