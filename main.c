@@ -11,9 +11,9 @@ int main(int argc, char **argv){
     // startTest();
     // return 0;
 
-    startOrExecute(argc, argv);
+    // startOrExecute(argc, argv);
 
-    // start();    
+    start();    
     return 0;
 }
 
@@ -29,6 +29,7 @@ void startOrExecute(int argc, char ** argv){
             }else{
                 int size = 0;
                 char ** args = parseExecuteSingleStr(argv[0], &size);
+                printStringArray(args);
             }
         }else{
             printf("Error : Ripshell no acepta commandos que no sean parametros de --exec\nvea help --exec para mas informacion o inicie ripshell sin ningun commando.\n");
